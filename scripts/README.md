@@ -7,6 +7,7 @@ This directory contains the shell helpers used by the flake and installed comman
 - [`setup.sh`](./setup.sh): bootstrap a new repo from the template
 - [`build-profiles.sh`](./build-profiles.sh): prebuild every discovered profile
 - [`switch-profile.sh`](./switch-profile.sh): activate a prebuilt profile result instantly
+- [`update-cabanashmul.sh`](./update-cabanashmul.sh): fetch+merge template updates, rebuild, optional switch
 
 ## Setup Workflow
 
@@ -49,3 +50,24 @@ switch-profile personal
 ```
 
 That executes the saved activation result directly, without another Nix evaluation.
+
+## Template Update Helper
+
+[`update-cabanashmul.sh`](./update-cabanashmul.sh) is installed as `update-cabanashmul`.
+
+Default behavior:
+
+```bash
+update-cabanashmul
+```
+
+This runs:
+
+1. `git fetch template`
+2. `git merge template/main`
+3. `build-profiles`
+
+Flags:
+
+- `--no-build` — skip `build-profiles`
+- `--switch <profile>` — run full update + rebuild cycle, then `switch-profile <profile>`

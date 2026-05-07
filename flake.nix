@@ -18,6 +18,8 @@
     tshmux.inputs.nixpkgs.follows = "nixpkgs";
     shmulvim.url                    = "github:shmul95/shmulvim";
     shmulvim.inputs.nixpkgs.follows = "nixpkgs";
+    get-shmul-done.url              = "github:shmul95/get-shmul-done?ref=v1.0.0";
+    get-shmul-done.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs:

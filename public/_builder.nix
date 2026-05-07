@@ -6,11 +6,16 @@
   cab          = config.flake.cabanashmul;
   profileNames = lib.attrNames cab.profiles;
   activeName =
-    if envProfile != "" && cab.profiles ? ${envProfile} then envProfile
-    else if cab.defaultProfile != null then cab.defaultProfile
+    if envProfile != "" then
+      if cab.profiles ? ${envProfile} then envProfile
+      else throw "cabanashmul: CABANASHMUL_PROFILE='${envProfile}' was requested but not found (have: ${lib.concatStringsSep ", " profileNames})"
+    else if cab.defaultProfile != null then
+      if cab.profiles ? ${cab.defaultProfile} then cab.defaultProfile
+      else throw "cabanashmul: flake.cabanashmul.defaultProfile='${cab.defaultProfile}' was requested but not found (have: ${lib.concatStringsSep ", " profileNames})"
+    else if cab.profiles ? personal then "personal"
     else if (lib.length profileNames) == 1 then lib.head profileNames
     else if profileNames == [] then "none"
-    else throw "cabanashmul: set CABANASHMUL_PROFILE or flake.cabanashmul.defaultProfile (have: ${lib.concatStringsSep ", " profileNames})";
+    else throw "cabanashmul: set CABANASHMUL_PROFILE or flake.cabanashmul.defaultProfile (have: ${lib.concatStringsSep ", " profileNames}; 'personal' is used automatically when present)";
 
   mkConfig = name: profile:
     inputs.home-manager.lib.homeManagerConfiguration {

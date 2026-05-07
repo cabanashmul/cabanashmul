@@ -2,6 +2,10 @@
 
 This directory is for agenix secret metadata.
 
+It is optional.
+
+If you are happy keeping plain values in `profiles/*.nix` or using normal files under `~/.ssh`, you do not need any of this.
+
 ## What Lives Here
 
 [`secrets.nix`](./secrets.nix) declares which SSH public keys are allowed to decrypt each secret.
