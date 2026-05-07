@@ -11,6 +11,11 @@
         runtimeInputs  = [ pkgs.coreutils ];
         text           = builtins.readFile ../scripts/switch-profile.sh;
       })
+      (pkgs.writeShellApplication {
+        name           = "update-cabanashmul";
+        runtimeInputs  = [ pkgs.coreutils pkgs.git ];
+        text           = builtins.readFile ../scripts/update-cabanashmul.sh;
+      })
     ] ++ lib.optionals (context == "desktop") (with pkgs; [ discord firefox kitty ]);
   };
 }

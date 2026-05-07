@@ -32,3 +32,8 @@ shmulcode = {
 ```
 
 Private inputs must be added directly to the static `inputs` attrset in `flake.nix`. [`private-inputs.example.nix`](../private-inputs.example.nix) documents the pattern.
+
+Official flake input references:
+
+- https://nix.dev/concepts/flakes.html
+- https://nix.dev/manual/nix/stable/command-ref/new-cli/nix3-flake.html
