@@ -16,6 +16,14 @@
         runtimeInputs  = [ pkgs.coreutils pkgs.git ];
         text           = builtins.readFile ../scripts/update-cabanashmul.sh;
       })
+      (pkgs.writeShellApplication {
+        name           = "init-vault";
+        runtimeInputs  = [ pkgs.coreutils ];
+        text           = ''
+          export INIT_VAULT_TEMPLATE='${toString ../vault-template}'
+          ${builtins.readFile ../scripts/init-vault.sh}
+        '';
+      })
     ] ++ lib.optionals (context == "desktop") (with pkgs; [ discord firefox kitty ]);
   };
 }

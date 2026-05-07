@@ -166,6 +166,28 @@ nix shell home-manager#home-manager
 home-manager switch --impure --flake . -b backup
 ```
 
+## Obsidian Vault Bootstrap
+
+If you want the public vault scaffold that pairs with GSD, generate it locally first:
+
+```bash
+nix run github:shmul95/cabanashmul#init-vault
+# or, after installing the helper:
+init-vault ~/vault
+```
+
+The command defaults to `~/vault` and refuses to overwrite an existing vault.
+
+Then point `get-shmul-done` at that path from `local.nix`:
+
+```nix
+{
+  programs.gsd.vault.path = "/home/you/vault";
+}
+```
+
+The generated vault includes a seed note that documents the `02_Projects/<ProjectName>/GSD/` + `.planning` convention used for project planning.
+
 ## Fast Profile Switching
 
 If you keep more than one profile (say `personal` and `work`), running `home-manager switch --impure --flake .` re-evaluates the flake every time. The bundled `build-profiles` and `switch-profile` helpers avoid that round-trip by prebuilding every profile once and then activating the cached result instantly.

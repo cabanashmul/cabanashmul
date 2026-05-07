@@ -5,4 +5,7 @@
 
   # Optional. If omitted, cabanashmul uses profiles.personal when present.
   # flake.cabanashmul.defaultProfile = "work";
+
+  # Point GSD at the local vault you created with `init-vault`.
+  # programs.gsd.vault.path = "/home/you/vault";
 }
