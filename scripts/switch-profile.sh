@@ -32,6 +32,15 @@ done
 
 PROFILE_NAME="$1"
 
+if [[ "$PROFILE_NAME" == -* ]]; then
+  if [[ "$PROFILE_NAME" == "-b" ]]; then
+    echo "switch-profile: -b requires an argument" >&2
+  else
+    echo "switch-profile: missing profile name" >&2
+  fi
+  exit 1
+fi
+
 DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/cabanashmul"
 RESULT_LINK="$DATA_DIR/result-$PROFILE_NAME"
 
