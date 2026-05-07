@@ -36,6 +36,11 @@ phase_count: 4
 3. `switch-profile --show-trace work` produces a Nix evaluator stack trace when activation fails.
 4. `switch-profile work` (no flags) preserves current behavior — fails fast if `result-work` doesn't exist.
 
+**Plans:** 1 plan
+
+Plans:
+- [ ] 01-01-PLAN.md — Flag parsing with env-var translation for activate
+
 **Not in scope:** `-B` build-then-switch (deferred — see SWITCH-BUILD-01).
 
 ---
