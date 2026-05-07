@@ -6,3 +6,4 @@ result-*
 !/private/README.md
 /profiles.nix
 /profiles/*.nix
+.planning
