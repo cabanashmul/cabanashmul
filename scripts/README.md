@@ -41,6 +41,16 @@ Run:
 build-profiles
 ```
 
+To build and switch in one step:
+
+```bash
+build-profiles --switch personal
+```
+
+Flags:
+
+- `-s <profile>` / `--switch <profile>` — build all profiles, then activate the named profile with `switch-profile`
+
 [`switch-profile.sh`](./switch-profile.sh) is installed as `switch-profile`.
 
 Run:
