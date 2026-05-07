@@ -182,11 +182,11 @@ Re-run `build-profiles` after editing any module so the cached results stay in s
 
 ## AI runtimes via get-shmul-done
 
-`get-shmul-done` ships as a default public module. It is loaded automatically on every machine unless you delete [`public/gsd.nix`](./public/gsd.nix) in your fork.
+`get-shmul-done` ships as a default public module. It is loaded automatically on every machine unless you delete [`public/get-shmul-done.nix`](./public/get-shmul-done.nix) in your fork.
 
 If you want to customize the module, do it in your own Home Manager layer after the public modules load. For example, you can add `programs.gsd.*` settings in `local.nix` or a profile file.
 
-If you do not want the module at all, remove `public/gsd.nix` from your fork.
+If you do not want the module at all, remove `public/get-shmul-done.nix` from your fork.
 
 ## How To Customize It
 
