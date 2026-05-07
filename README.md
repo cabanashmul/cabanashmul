@@ -180,6 +180,14 @@ switch-profile work            # activate the prebuilt work profile
 
 Re-run `build-profiles` after editing any module so the cached results stay in sync. See [`scripts/README.md`](./scripts/README.md) for details.
 
+## AI runtimes via get-shmul-done
+
+`get-shmul-done` ships as a default public module. It is loaded automatically on every machine unless you delete [`public/gsd.nix`](./public/gsd.nix) in your fork.
+
+If you want to customize the module, do it in your own Home Manager layer after the public modules load. For example, you can add `programs.gsd.*` settings in `local.nix` or a profile file.
+
+If you do not want the module at all, remove `public/gsd.nix` from your fork.
+
 ## How To Customize It
 
 Most changes happen in [`public/`](./public/README.md).
