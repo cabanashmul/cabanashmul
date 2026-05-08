@@ -10,7 +10,7 @@
 [![Built with Nix](https://img.shields.io/badge/Built%20with-Nix-5277C3?logo=nixos&logoColor=white)](https://nixos.org)
 [![dendritic](https://img.shields.io/badge/pattern-dendritic-8957E5)](https://github.com/vic/import-tree)
 
-[Get Started](#get-started) · [Architecture](#architecture) · [Fast Profile Switching](#fast-profile-switching) · [Troubleshooting](#troubleshooting)
+[Get Started](#get-started) · [Architecture](#architecture) · [Fast Profile Switching](#fast-profile-switching) · [AI runtimes via get-shmul-done](#ai-runtimes-via-get-shmul-done) · [Troubleshooting](#troubleshooting)
 
 </div>
 
@@ -51,23 +51,27 @@ The flake exposes one Home Manager configuration per profile (`.#"$USER"-persona
 
 This walks you from zero to a working setup in five steps. Skim if you're a Nix veteran; read every step if you're not. There's a one-block [Quick Start](#quick-start-for-nix-veterans) at the end of this section for skimmers.
 
+### What is Nix?
+
+Nix is a package manager that installs software in `/nix/store` without touching your system. It keeps installs reproducible, removable, and isolated from the rest of your machine.
+
+### What is Home Manager?
+
+Home Manager uses Nix to manage your user-level dotfiles and packages declaratively. Instead of editing `~/.zshrc` by hand, you describe what you want in a `.nix` file and rebuild.
+
+### What is cabanashmul?
+
+cabanashmul is a starter template that gives Home Manager a sensible folder structure so you don't have to design one yourself. You don't need to learn the Nix language to use this. You'll mostly be copying files and editing values.
+
 ### Prerequisites
 
 - **Nix with flakes enabled.** If you don't have Nix yet, see [Install Nix](#1-install-nix) below.
 - **git** installed (the setup app uses it).
 - A few minutes, and a willingness to **log out and back in** at the end if you want `zsh` as your login shell.
 
-A short orientation if you're entirely new:
-
-- **Nix** is a package manager that installs software in `/nix/store` without touching your system. Reproducible, removable, parallel versions.
-- **Home Manager** uses Nix to manage your user-level dotfiles and packages declaratively. Instead of editing `~/.zshrc` by hand, you describe what you want in a `.nix` file and rebuild.
-- **cabanashmul** is a starter template that gives Home Manager a sensible folder structure so you don't have to design one yourself.
-
-You don't need to learn the Nix language to use this. You'll mostly be copying files and editing values.
-
 ### 1. Install Nix
 
-Skip this section if `nix --version` already prints something on your machine and your installer enabled flakes.
+Skip this step if `nix --version` already prints something on your machine and your installer enabled flakes.
 
 The Determinate Systems installer is the easiest path — it enables flakes by default and uninstalls cleanly:
 
@@ -83,9 +87,9 @@ If you used another installer and `nix run` complains about flakes, add this to 
 experimental-features = nix-command flakes
 ```
 
-### 2. Bootstrap your config
+### 2. Bootstrap cabanashmul
 
-From any directory (your home folder is fine), run:
+From any directory, run:
 
 ```bash
 nix run github:shmul95/cabanashmul#setup
@@ -99,9 +103,11 @@ The setup app:
 - Creates `profiles/personal.nix` and `local.nix` inside the clone.
 - Optionally offers to create a private GitHub repo and set it as a new `origin` (requires the `gh` CLI; answer `n` if you don't want this).
 
-**Edit `profiles/personal.nix`** with your real name and email in the `git.settings.user` block before continuing.
+### 3. Configure files
 
-### 3. Apply your config
+Edit `profiles/personal.nix` with your real name and email in the `git.settings.user` block before continuing. If you want machine-local settings, put them in `local.nix`.
+
+### 4. Rebuild or switch
 
 ```bash
 nix shell home-manager#home-manager           # adds home-manager to this terminal only
@@ -114,8 +120,6 @@ About those flags:
 - **`-b backup`** renames any pre-existing dotfile (like an existing `~/.zshrc`) to `<file>.backup` instead of refusing to switch. Only needed on the first run if you already had dotfiles in place.
 - **`--flake .`** picks the home configuration named after your username — by default, your `personal` profile. Switching to another profile uses an explicit name; see [Architecture](#architecture).
 
-### 4. Verify
-
 Open a new terminal. You should see:
 
 - A Typewritten-style single-line zsh prompt.
@@ -124,7 +128,7 @@ Open a new terminal. You should see:
 
 If something doesn't match, jump to [Troubleshooting](#troubleshooting).
 
-### 5. Daily loop
+### 5. Update from the template
 
 Edit any `.nix` file in your config, then re-run:
 
@@ -206,7 +210,13 @@ Re-run `build-profiles` after editing any module so the cached results stay in s
 
 `get-shmul-done` ships as a default public module. It is loaded automatically on every machine unless you delete [`public/get-shmul-done.nix`](./public/get-shmul-done.nix) in your fork.
 
-If you want to customize the module, do it in your own Home Manager layer after the public modules load. For example, you can add `programs.gsd.*` settings in `local.nix` or a profile file.
+If you want to customize the module, do it in your own Home Manager layer after the public modules load. `local.nix` is the easiest place to keep machine-local tweaks:
+
+```nix
+{ ... }: {
+  programs.gsd.vault.path = "/home/you/vault";
+}
+```
 
 If you do not want the module at all, remove `public/get-shmul-done.nix` from your fork.
 

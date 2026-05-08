@@ -2,6 +2,15 @@
 
 This project uses retroactive semantic version tags for major milestones in its history.
 
+## 1.1.0 - 2026-05-08
+
+Second stable release. v1.1 rounds out the starter flake with a clearer onboarding path, release-facing documentation, and the final public release marker for the milestone.
+
+- Onboarding docs now walk newcomers through the setup in a gentler order: concept primers up front, then install, bootstrap, configure, rebuild or switch, template updates, and troubleshooting. The landing page nav now jumps straight to the main sections people actually need.
+- The `get-shmul-done` section stays on by default in the docs, with a short `local.nix` customization snippet instead of a manual opt-in story.
+- Release notes now capture the milestone as a human-readable summary, covering the ergonomic `switch-profile` flags, `update-cabanashmul`, the optional `get-shmul-done` module, and the public Obsidian vault bootstrap surface.
+- The release commit is tagged `1.1.0`, making this milestone easy to reference and reproduce from the canonical release tip.
+
 ## 1.0.0 - 2026-05-05
 
 First stable release. The structure (public / private / profiles / secrets layers, dendritic auto-import, profile-based identity) is considered stable and the onboarding path has been validated end-to-end.
