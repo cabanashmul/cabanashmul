@@ -8,6 +8,7 @@ This directory contains the shell helpers used by the flake and installed comman
 - [`build-profiles.sh`](./build-profiles.sh): prebuild every discovered profile
 - [`switch-profile.sh`](./switch-profile.sh): activate a prebuilt profile result instantly
 - [`update-cabanashmul.sh`](./update-cabanashmul.sh): fetch+merge template updates, rebuild, optional switch
+- [`init-vault.sh`](./init-vault.sh): copy the bundled Obsidian vault scaffold to a local path
 
 ## Setup Workflow
 
@@ -81,3 +82,25 @@ Flags:
 
 - `--no-build` — skip `build-profiles`
 - `--switch <profile>` — run full update + rebuild cycle, then `switch-profile <profile>`
+
+## Vault Bootstrap Helper
+
+[`init-vault.sh`](./init-vault.sh) is installed as `init-vault`.
+
+It:
+
+- copies the bundled `vault-template/` scaffold into a local vault path
+- defaults to `~/vault`
+- refuses to overwrite an existing vault
+
+Run:
+
+```bash
+init-vault
+```
+
+Or choose a different destination:
+
+```bash
+init-vault ~/Documents/vault
+```

@@ -26,6 +26,7 @@ If you want to understand what the starter enables by default, start here.
 - [`core.nix`](./core.nix): enables `git` and optional `ssh` config from the active profile
 - [`direnv.nix`](./direnv.nix): enables `direnv` and `nix-direnv`
 - [`kitty.nix`](./kitty.nix): enables `kitty` only when `context = "desktop"`
+- [`init-vault.nix`](./init-vault.nix): exposes the `init-vault` vault scaffold generator
 - [`packages.nix`](./packages.nix): installs helper commands and desktop packages
 - [`get-shmul-done.nix`](./get-shmul-done.nix): imports `get-shmul-done` and enables `programs.gsd`
 - [`setup.nix`](./setup.nix): exposes the `nix run ...#setup` bootstrap app
