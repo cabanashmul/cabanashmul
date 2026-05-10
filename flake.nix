@@ -20,6 +20,13 @@
     shmulvim.inputs.nixpkgs.follows = "nixpkgs";
     get-shmul-done.url              = "github:shmul95/get-shmul-done?ref=v1.0.0";
     get-shmul-done.inputs.nixpkgs.follows = "nixpkgs";
+
+    # NOTE: cabanashmul/shelp repo must be created and pushed to GitHub
+    # before `nix flake update` and `nix flake check` will pass here.
+    # Steps: create github.com/cabanashmul/shelp, push shelp/ subdirectory
+    # from cabanashmul-landing-page repo, then run `nix flake update shelp`.
+    shelp.url                    = "github:cabanashmul/shelp";
+    shelp.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs:
