@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ self, inputs, ... }: {
   flake.cabanashmul.homeModules.gsd = { ... }: {
     imports = [ inputs.get-shmul-done.homeManagerModules.default ];
 
@@ -7,7 +7,8 @@
       enable = true;
 
       # Install the runtimes GSD knows how to bootstrap in this repo.
-      providers = [ "claude-code" "codex" "copilot" ];
+      # Shared with shmulsidian via public/providers.nix.
+      inherit (self.cabanashmul) providers;
 
       # Keep the full feature set enabled unless a local profile turns it down.
       minimal = false;
