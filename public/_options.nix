@@ -18,6 +18,11 @@
           type    = lib.types.attrsOf lib.types.deferredModule;
           default = {};
         };
+        overlays = lib.mkOption {
+          type    = lib.types.listOf lib.types.unspecified;
+          default = [];
+          description = "nixpkgs overlays applied when instantiating pkgs for homeConfigurations.";
+        };
       };
     };
     default = {};

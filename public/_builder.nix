@@ -17,16 +17,21 @@
     else if profileNames == [] then "none"
     else throw "cabanashmul: set CABANASHMUL_PROFILE or flake.cabanashmul.defaultProfile (have: ${lib.concatStringsSep ", " profileNames}; 'personal' is used automatically when present)";
 
+  pkgs = import inputs.nixpkgs {
+    system = "x86_64-linux";
+    overlays = cab.overlays;
+    config.allowUnfree = true;
+  };
+
   mkConfig = name: profile:
     inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+      inherit pkgs;
       modules = (lib.attrValues cab.homeModules) ++ [
         {
           home.username      = lib.mkDefault username;
           home.homeDirectory = lib.mkDefault homeDirectory;
           home.stateVersion  = lib.mkDefault "25.05";
           programs.home-manager.enable = true;
-          nixpkgs.config.allowUnfree  = true;
         }
       ];
       extraSpecialArgs = {
@@ -50,4 +55,10 @@ in {
 
   flake.lib.profileNamesStr =
     builtins.concatStringsSep " " profileNames;
+
+  flake.homeManagerModules.default = {
+    imports = (lib.attrValues cab.homeModules) ++ [
+      { home.stateVersion = lib.mkDefault "25.05"; }
+    ];
+  };
 }
