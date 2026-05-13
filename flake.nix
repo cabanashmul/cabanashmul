@@ -18,7 +18,7 @@
     tshmux.inputs.nixpkgs.follows = "nixpkgs";
     shmulvim.url                    = "github:shmul95/shmulvim";
     shmulvim.inputs.nixpkgs.follows = "nixpkgs";
-    get-shmul-done.url              = "github:cabanashmul/get-shmul-done?ref=v1.0.2";
+    get-shmul-done.url              = "github:cabanashmul/get-shmul-done";
     get-shmul-done.inputs.nixpkgs.follows = "nixpkgs";
 
     # NOTE: cabanashmul/shelp repo must be created and pushed to GitHub
