@@ -33,6 +33,7 @@
         inherit inputs username homeDirectory;
         activeProfile = profile;
         context       = cab.context;
+        providers     = cab.providers;
       };
     };
 in {

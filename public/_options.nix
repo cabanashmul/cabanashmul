@@ -18,6 +18,11 @@
           type    = lib.types.attrsOf lib.types.deferredModule;
           default = {};
         };
+        providers = lib.mkOption {
+          type    = lib.types.listOf lib.types.str;
+          default = [];
+          description = "AI providers shared across modules (e.g. shmulsidian, get-shmul-done).";
+        };
       };
     };
     default = {};
