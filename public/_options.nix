@@ -23,6 +23,11 @@
           default = [];
           description = "AI providers shared across modules (e.g. shmulsidian, get-shmul-done).";
         };
+        overlays = lib.mkOption {
+          type    = lib.types.listOf lib.types.raw;
+          default = [];
+          description = "nixpkgs overlays applied when instantiating pkgs.";
+        };
       };
     };
     default = {};
