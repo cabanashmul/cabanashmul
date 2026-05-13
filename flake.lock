@@ -465,11 +465,11 @@
         "shmulsidian-template": "shmulsidian-template"
       },
       "locked": {
-        "lastModified": 1778615990,
-        "narHash": "sha256-LCwZshq2j4iogRhxUWVpWu80bH16Syd1vDp4ZrXuJ8o=",
+        "lastModified": 1778637134,
+        "narHash": "sha256-ZRQQk0ixjRFgubb9iHB+qYqfwzTV49RdZ7yDp/+7o5k=",
         "ref": "refs/heads/main",
-        "rev": "d1c77f0fc29dfe04d13f4b7541f2da90dcd28e21",
-        "revCount": 321,
+        "rev": "02933c92763307471b70932d78eaa62b74ed41ee",
+        "revCount": 322,
         "type": "git",
         "url": "ssh://git@github.com/shmul95/shmulsidian"
       },
