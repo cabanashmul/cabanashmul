@@ -1,14 +1,14 @@
 { inputs, ... }: {
-  # cabanashmul.decompose-project — opt-in home-manager module installing the
+  # cabanashmul.decompose-project — home-manager module installing the
   # /decompose-project and /create-service Claude Code skills.
   #
   # Source: github.com/cabanashmul/decompose-project
   #
-  # Usage in a profile:
-  #   cabanashmul.decompose-project.enable = true;
+  # Enabled by default. To opt out, add to a profile or local.nix:
+  #   cabanashmul.decompose-project.enable = false;
   #
-  # This drops the two SKILL.md files into ~/.claude/skills/, making the
-  # `/decompose-project` and `/create-service` commands available in any
+  # When enabled, drops the two SKILL.md files into ~/.claude/skills/,
+  # making `/decompose-project` and `/create-service` available in any
   # Claude Code session.
 
   flake.cabanashmul.homeModules.decompose-project = { lib, config, ... }:
@@ -17,8 +17,11 @@
       src = inputs.decompose-project;
     in {
       options.cabanashmul.decompose-project = {
-        enable = lib.mkEnableOption
-          "claude skills for bootstrapping multi-repo projects (/decompose-project and /create-service)";
+        # Enabled by default — override with `cabanashmul.decompose-project.enable = false;`
+        # in a profile or local.nix to opt out.
+        enable = (lib.mkEnableOption
+          "claude skills for bootstrapping multi-repo projects (/decompose-project and /create-service)")
+          // { default = true; };
       };
 
       config = lib.mkIf cfg.enable {
