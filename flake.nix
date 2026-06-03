@@ -42,8 +42,9 @@
       imports =
         # Load _options.nix and _builder.nix first (underscore prefix is excluded
         # by import-tree's default filter, so they are listed explicitly).
-        [ ./public/_options.nix ./public/_builder.nix ]
+        [ ./public/_options.nix ./nixos/_options.nix ./public/_builder.nix ./nixos/_builder.nix ]
         ++ (inputs.import-tree ./public).imports
+        ++ (if builtins.pathExists ./nixos   then (inputs.import-tree ./nixos).imports   else [])
         ++ (if builtins.pathExists ./private  then (inputs.import-tree ./private).imports  else [])
         ++ (if builtins.pathExists ./profiles then (inputs.import-tree ./profiles).imports else [])
         ++ (if builtins.pathExists ./local.nix then [ ./local.nix ] else []);

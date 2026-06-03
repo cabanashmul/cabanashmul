@@ -18,6 +18,11 @@
           type    = lib.types.attrsOf lib.types.deferredModule;
           default = {};
         };
+        nixosModules = lib.mkOption {
+          type    = lib.types.attrsOf lib.types.deferredModule;
+          default = {};
+          description = "NixOS modules merged into flake.nixosConfigurations.";
+        };
         providers = lib.mkOption {
           type    = lib.types.listOf lib.types.str;
           default = [];

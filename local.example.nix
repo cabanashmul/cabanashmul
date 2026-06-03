@@ -3,6 +3,10 @@
 { ... }: {
   flake.cabanashmul.context = "server"; # "server" | "wsl" | "desktop"
 
+  # NixOS host settings. Keep the hostname at "cabanashmul" unless you also
+  # rename the flake output in nixos/_options.nix.
+  # flake.cabanashmul.nixos.userName = "shmul95";
+
   # Optional. If omitted, cabanashmul uses profiles.personal when present.
   # flake.cabanashmul.defaultProfile = "work";
 
