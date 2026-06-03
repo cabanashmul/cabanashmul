@@ -45,6 +45,21 @@
         "type": "github"
       }
     },
+    "decompose-project": {
+      "locked": {
+        "lastModified": 1779215869,
+        "narHash": "sha256-X1YMSjSJuUOmnHQRrD+BnqnJb+cjLZwgAt0tLS+6XOI=",
+        "owner": "cabanashmul",
+        "repo": "decompose-project",
+        "rev": "66576c9f0f7717554317a0da3e278f82532894c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cabanashmul",
+        "repo": "decompose-project",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -424,6 +439,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "decompose-project": "decompose-project",
         "flake-parts": "flake-parts",
         "get-shmul-done": "get-shmul-done",
         "home-manager": "home-manager_2",

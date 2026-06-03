@@ -34,6 +34,10 @@
     # from cabanashmul-landing-page repo, then run `nix flake update shelp`.
     shelp.url                    = "github:cabanashmul/shelp";
     shelp.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Claude skills for bootstrapping multi-repo projects.
+    # Data-only flake (just SKILL.md files); no nixpkgs follows needed.
+    decompose-project.url = "github:cabanashmul/decompose-project";
   };
 
   outputs = inputs:
