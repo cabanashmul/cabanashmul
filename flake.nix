@@ -22,6 +22,9 @@
     get-shmul-done.url              = "github:cabanashmul/get-shmul-done";
     get-shmul-done.inputs.nixpkgs.follows = "nixpkgs";
 
+    hermes-agent.url                    = "github:NousResearch/hermes-agent";
+    hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
+
     # Points at the vault repo (github:shmul95/shmulsidian), which re-exports
     # lib.mkOverlay and homeManagerModules from shmulsidian-template.
     # New operators: fork the template, add YOUR vault as shmulsidian input.
