@@ -48,6 +48,8 @@ in {
 
           users.users.${username} = {
             isNormalUser = true;
+            home = homeDirectory;
+            createHome = true;
             extraGroups = [ "wheel" "networkmanager" ];
           };
 
