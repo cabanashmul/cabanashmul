@@ -25,6 +25,12 @@
     hermes-agent.url                    = "github:NousResearch/hermes-agent";
     hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
 
+    hermes-shmulsidian.url                    = "github:cabanashmul/hermes-shmulsidian";
+    hermes-shmulsidian.inputs.nixpkgs.follows = "nixpkgs";
+
+    memtide-vault.url                    = "github:EIP-memtide/memtide-vault";
+    memtide-vault.inputs.nixpkgs.follows = "nixpkgs";
+
     # Points at the vault repo (github:shmul95/shmulsidian), which re-exports
     # lib.mkOverlay and homeManagerModules from shmulsidian-template.
     # New operators: fork the template, add YOUR vault as shmulsidian input.
