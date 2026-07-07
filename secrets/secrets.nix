@@ -8,4 +8,7 @@ in {
   "github_work.age"         = { publicKeys = [ me ]; };
   "git-email-personal.age"  = { publicKeys = [ me ]; };
   "git-email-work.age"      = { publicKeys = [ me ]; };
+
+  # Hermes Agent ("creature") — API keys + Discord token
+  "creature-env.age"        = { publicKeys = [ me ]; };
 }

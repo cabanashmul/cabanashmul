@@ -1,35 +1,92 @@
+# nixos/hermes.nix — Hermes Agent ("creature") for MemTide
+#
+# Runs hermes-agent in container mode with:
+# - hermes-shmulsidian memory plugin (vault search/read/create)
+# - memtide-dev workspace mounted (vault is nested inside at repos/memtide-vault)
+# - Discord bot integration (@creature)
+# - agenix secrets for API keys
+#
+# Secrets needed:
+#   creature-env.age  — XIAOMI_API_KEY, DISCORD_TOKEN
+#
+# The agent searches the vault via shmulsidian tools and can read code
+# from the mounted workspace. Interact via Discord: @creature <question>
 { inputs, config, ... }: let
   username = config.flake.cabanashmul.nixos.userName;
+  system = config.flake.cabanashmul.nixos.system;
+
+  hermesShmulsidian = inputs.hermes-shmulsidian.packages.${system}.default;
+
+  # Single mount — vault lives inside at repos/memtide-vault
+  workspaceMount = "/data/memtide-dev";
+  vaultPath = "${workspaceMount}/repos/memtide-vault";
 in {
-  flake.cabanashmul.nixosModules.hermes = { config, ... }: {
-    imports = [ inputs.hermes-agent.nixosModules.default ];
+  flake.cabanashmul.nixosModules.hermes = { config, lib, pkgs, ... }: {
+    imports = [
+      inputs.agenix.nixosModules.default
+      inputs.hermes-agent.nixosModules.default
+      inputs.hermes-shmulsidian.nixosModules.default
+    ];
+
+    # Agenix secrets
+    age.secrets.creature-env = {
+      file = ./../secrets/creature-env.age;
+      owner = "hermes";
+      group = "hermes";
+      mode = "0440";
+    };
+
+    # Host user access
+    users.users.${username}.extraGroups = [ "hermes" ];
 
     services.hermes-agent = {
       enable = true;
-
-      # Keep the CLI attached to the managed runtime instead of creating a
-      # second ad-hoc ~/.hermes in the user session.
       addToSystemPackages = true;
 
-      # Container mode is the good default once you want Hermes to run as a
-      # background service and keep its own long-lived writable runtime.
+      # Secrets
+      environmentFiles = [
+        config.age.secrets.creature-env.path
+      ];
+
+      # Env vars for the shmulsidian plugin
+      environment = {
+        SHMULSIDIAN_VAULT_PATH = vaultPath;
+      };
+
+      # Declarative config
+      settings = {
+        model = {
+          provider = "xiaomi";
+          default = "mimo-v2.5-pro";
+        };
+
+        memory.provider = "shmulsidian";
+
+        display = {
+          interface = "tui";
+          skin = "slate";
+        };
+
+        approvals.mode = "smart";
+        agent.tool_use_enforcement = true;
+
+        # Discord — declarative
+        discord.enabled = true;
+      };
+
+      # Plugin: shmulsidian memory provider
+      extraPlugins = [ hermesShmulsidian ];
+
+      # Container mode
       container = {
         enable = true;
         hostUsers = [ username ];
-      };
 
-      # Fill these in once you have real credentials and model defaults.
-      # The docs recommend keeping secrets in environmentFiles and authFile.
-      #
-      # settings = {
-      #   model.default = "openrouter/your-model";
-      # };
-      #
-      # environmentFiles = [
-      #   config.age.secrets."hermes-env".path
-      # ];
-      #
-      # authFile = config.age.secrets."hermes-auth".path;
+        # Mount the whole workspace (vault is inside at repos/memtide-vault)
+        extraVolumes = [
+          "/home/${username}/Repositories/memtide-dev:${workspaceMount}:ro"
+        ];
+      };
     };
   };
 }
