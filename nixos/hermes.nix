@@ -6,8 +6,9 @@
 # - Discord bot integration (@creature)
 # - agenix secrets for API keys
 #
-# Secrets needed:
-#   creature-env.age  — XIAOMI_API_KEY, DISCORD_TOKEN
+# Secrets needed (in creature-env.age):
+#   XIAOMI_API_KEY       — MiMo model provider
+#   DISCORD_BOT_TOKEN    — Discord bot
 #
 # The agent searches the vault via shmulsidian tools and can read code
 # from the mounted workspace. Interact via Discord: @creature <question>
