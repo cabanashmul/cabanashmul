@@ -22,6 +22,10 @@
     get-shmul-done.url              = "github:cabanashmul/get-shmul-done";
     get-shmul-done.inputs.nixpkgs.follows = "nixpkgs";
 
+    # TODO: passer à github:shmul95/Tsinghua-App-Improved une fois le flake pushé.
+    thu-app-im.url                    = "path:/home/shmul95/Repositories/thu-app-im";
+    thu-app-im.inputs.nixpkgs.follows = "nixpkgs";
+
     hermes-agent.url                    = "github:NousResearch/hermes-agent";
     hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
 
