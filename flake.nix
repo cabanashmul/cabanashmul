@@ -22,7 +22,8 @@
     get-shmul-done.url              = "github:cabanashmul/get-shmul-done";
     get-shmul-done.inputs.nixpkgs.follows = "nixpkgs";
 
-    thu-app-im.url                    = "github:shmul95/Tsinghua-App-Improved";
+    # Dépôt privé : github: renvoie 404 sans access-tokens dans nix.conf.
+    thu-app-im.url                    = "git+ssh://git@github.com/shmul95/Tsinghua-App-Improved";
     thu-app-im.inputs.nixpkgs.follows = "nixpkgs";
 
     hermes-agent.url                    = "github:NousResearch/hermes-agent";
