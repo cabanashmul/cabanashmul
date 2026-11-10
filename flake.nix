@@ -24,9 +24,11 @@
     get-shmul-done.url              = "github:cabanashmul/get-shmul-done";
     get-shmul-done.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Dépôt privé : github: renvoie 404 sans access-tokens dans nix.conf.
-    thu-app-im.url                    = "git+ssh://git@github.com/shmul95/Tsinghua-App-Improved";
-    thu-app-im.inputs.nixpkgs.follows = "nixpkgs";
+    # thu-app-im — PAUSED 2026-11-10: project made little progress; kept for
+    # possible resumption. Wrapper disabled at public/thu-app-im.nix.disabled.
+    # Re-enable by restoring the wrapper and these two lines.
+    # thu-app-im.url                    = "git+ssh://git@github.com/shmul95/Tsinghua-App-Improved";
+    # thu-app-im.inputs.nixpkgs.follows = "nixpkgs";
 
     hermes-agent.url                    = "github:NousResearch/hermes-agent";
     hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +36,8 @@
     hermes-shmulsidian.url                    = "github:cabanashmul/hermes-shmulsidian";
     hermes-shmulsidian.inputs.nixpkgs.follows = "nixpkgs";
 
-    memtide-vault.url                    = "github:EIP-memtide/memtide-vault";
+    # Dépôt privé : github: renvoie 404 sans access-tokens dans nix.conf → ssh.
+    memtide-vault.url                    = "git+ssh://git@github.com/EIP-memtide/memtide-vault";
     memtide-vault.inputs.nixpkgs.follows = "nixpkgs";
 
     # Points at the vault repo (github:shmul95/shmulsidian), which re-exports
