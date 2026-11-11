@@ -36,7 +36,9 @@ in {
       providers = cab.providers;
     };
     modules =
-      (lib.optionals (builtins.pathExists ./hardware-configuration.nix) [ ./hardware-configuration.nix ])
+      # Underscore prefix: import-tree only sweeps non-underscore .nix files,
+      # so this NixOS module is imported explicitly here (not as a flake module).
+      (lib.optionals (builtins.pathExists ./_hardware-configuration.nix) [ ./_hardware-configuration.nix ])
       ++ (lib.attrValues cab.nixosModules)
       ++ [
         ({ ... }: {

@@ -14,9 +14,6 @@
 # from the mounted workspace. Interact via Discord: @creature <question>
 { inputs, config, ... }: let
   username = config.flake.cabanashmul.nixos.userName;
-  system = config.flake.cabanashmul.nixos.system;
-
-  hermesShmulsidian = inputs.hermes-shmulsidian.packages.${system}.default;
 
   # Single mount — vault lives inside at repos/memtide-vault
   workspaceMount = "/data/memtide-dev";
@@ -75,8 +72,9 @@ in {
         discord.enabled = true;
       };
 
-      # Plugin: shmulsidian memory provider
-      extraPlugins = [ hermesShmulsidian ];
+      # Plugin: shmulsidian memory provider is registered by
+      # inputs.hermes-shmulsidian.nixosModules.default (imported above);
+      # adding it again here triggered the duplicate-plugin assertion.
 
       # Container mode
       container = {
