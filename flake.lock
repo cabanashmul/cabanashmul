@@ -68,11 +68,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794328014,
-        "narHash": "sha256-SGDhHZrYrfyWc5h1SBVAjcMBieP0sc6Ds6uRPjvACTM=",
+        "lastModified": 1794374085,
+        "narHash": "sha256-ehrEPl/ENWmU8c9ou9ir+0rLB0kXNxxeW9AfhjWUPkA=",
         "owner": "shmul95",
         "repo": "djinn.nvim",
-        "rev": "014e825542d640245d5d0f3241bcff749ea01016",
+        "rev": "fa47324313f0fa4e5f90d64802d4197b413270b3",
         "type": "github"
       },
       "original": {
