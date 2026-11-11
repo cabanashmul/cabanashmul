@@ -1,8 +1,7 @@
 # Declare which SSH public keys can decrypt each secret.
 # Run: nix run github:ryantm/agenix -- -e <file>.age
 let
-  # Replace with the output of: cat ~/.ssh/id_ed25519.pub
-  me = "ssh-ed25519 AAAA_REPLACE_ME";
+  me = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOceK0eVaktFCAcOBqUeGN5X9gj7izp7zxn2jBoJrGZC samuel.gross@epitech.eu";
 in {
   "github_personal.age"     = { publicKeys = [ me ]; };
   "github_work.age"         = { publicKeys = [ me ]; };
@@ -11,4 +10,7 @@ in {
 
   # Hermes Agent ("creature") — API keys + Discord token
   "creature-env.age"        = { publicKeys = [ me ]; };
+
+  # djinn.nvim — DeepSeek API key (exported as DEEPSEEK_API_KEY at shell init)
+  "djinn-deepseek.age"      = { publicKeys = [ me ]; };
 }

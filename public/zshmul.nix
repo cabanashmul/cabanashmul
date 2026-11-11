@@ -35,6 +35,11 @@
       ohMyZshPlugins = [ "git" "z" ];
 
       extraInitContent = ''
+        # djinn.nvim: agenix-decrypted key -> env var (store holds only the command)
+        if [ -r /run/agenix/djinn-deepseek ]; then
+          export DEEPSEEK_API_KEY="$(cat /run/agenix/djinn-deepseek)"
+        fi
+
         export NVM_DIR="$HOME/.nvm"
         if [ -s "$NVM_DIR/nvm.sh" ]; then
           . "$NVM_DIR/nvm.sh"
