@@ -35,10 +35,16 @@
       ohMyZshPlugins = [ "git" "z" ];
 
       extraInitContent = ''
-        # djinn.nvim: agenix-decrypted key -> env var (store holds only the command)
-        if [ -r /run/agenix/djinn-deepseek ]; then
-          export DEEPSEEK_API_KEY="$(cat /run/agenix/djinn-deepseek)"
-        fi
+        # djinn.nvim: the DeepSeek key is scoped to nvim's process tree only —
+        # never exported into the interactive shell (same idea as deepcode's
+        # wrapper: the secret exists for the launched program, not the session).
+        nvim() {
+          if [ -r /run/agenix/djinn-deepseek ]; then
+            DEEPSEEK_API_KEY="$(cat /run/agenix/djinn-deepseek)" command nvim "$@"
+          else
+            command nvim "$@"
+          fi
+        }
 
         export NVM_DIR="$HOME/.nvm"
         if [ -s "$NVM_DIR/nvm.sh" ]; then
