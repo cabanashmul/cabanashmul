@@ -7,7 +7,7 @@
     # DEEPSEEK_API_KEY) — never from Nix, never from the store.
     programs.djinn = {
       enable      = true;
-      model       = "deepseek-chat";
+      model       = "deepseek-flash";  # deepseek-chat retired 2026-07-24
       base_url    = "https://api.deepseek.com/anthropic";
       api_key_env = "DEEPSEEK_API_KEY";
     };
