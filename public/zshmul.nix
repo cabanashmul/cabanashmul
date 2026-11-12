@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.cabanashmul.homeModules.zshmul = { pkgs, ... }: {
+  flake.cabanashmul.homeModules.zshmul = { pkgs, config, ... }: {
     imports = [ inputs.zshmul.homeManagerModules.default ];
 
     programs.zshmul = {
@@ -39,8 +39,8 @@
         # never exported into the interactive shell (same idea as deepcode's
         # wrapper: the secret exists for the launched program, not the session).
         nvim() {
-          if [ -r /run/agenix/djinn-deepseek ]; then
-            DEEPSEEK_API_KEY="$(cat /run/agenix/djinn-deepseek)" command nvim "$@"
+          if [ -r "${config.age.secrets."djinn-deepseek".path}" ]; then
+            DEEPSEEK_API_KEY="$(cat "${config.age.secrets."djinn-deepseek".path}")" command nvim "$@"
           else
             command nvim "$@"
           fi
