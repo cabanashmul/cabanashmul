@@ -33,7 +33,7 @@
     hermes-agent.url                    = "github:NousResearch/hermes-agent";
     hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
 
-    hermes-shmulsidian.url                    = "github:cabanashmul/hermes-shmulsidian";
+    hermes-shmulsidian.url                    = "github:shmul95/hermes-shmulsidian";
     hermes-shmulsidian.inputs.nixpkgs.follows = "nixpkgs";
 
     # Dépôt privé : github: renvoie 404 sans access-tokens dans nix.conf → ssh.

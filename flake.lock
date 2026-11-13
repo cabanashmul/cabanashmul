@@ -304,13 +304,13 @@
       "locked": {
         "lastModified": 1792766089,
         "narHash": "sha256-VsmFQjGdAuD5hNAeWljjPS44QCLN/OC5ncSBarYKU+Q=",
-        "owner": "cabanashmul",
+        "owner": "shmul95",
         "repo": "hermes-shmulsidian",
         "rev": "a0b03aee3f3bfc210370bac0fa9ae0dbc0d18258",
         "type": "github"
       },
       "original": {
-        "owner": "cabanashmul",
+        "owner": "shmul95",
         "repo": "hermes-shmulsidian",
         "type": "github"
       }
