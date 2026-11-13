@@ -11,6 +11,13 @@
 
     age.secrets = {
       "djinn-deepseek" = { file = ../secrets/djinn-deepseek.age; mode = "600"; };
+
+      # Provider env files consumed by public/shmulcode.nix. The .age files are
+      # created by the owner (agenix -e) — this branch will not BUILD until they
+      # exist; evaluation is unaffected.
+      "mimocode-env" = { file = ../secrets/mimocode-env.age; mode = "600"; };
+      "deepcode-env" = { file = ../secrets/deepcode-env.age; mode = "600"; };
+      "grokcode-env" = { file = ../secrets/grokcode-env.age; mode = "600"; };
     };
   };
 }

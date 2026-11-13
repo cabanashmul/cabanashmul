@@ -13,4 +13,9 @@ in {
 
   # djinn.nvim — DeepSeek API key (exported as DEEPSEEK_API_KEY at shell init)
   "djinn-deepseek.age"      = { publicKeys = [ me ]; };
+
+  # shmulcode provider env files (sourced at launch; never exported globally)
+  "mimocode-env.age"        = { publicKeys = [ me ]; };
+  "deepcode-env.age"        = { publicKeys = [ me ]; };
+  "grokcode-env.age"        = { publicKeys = [ me ]; };
 }

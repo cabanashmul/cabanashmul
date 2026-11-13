@@ -33,6 +33,12 @@
     hermes-agent.url                    = "github:NousResearch/hermes-agent";
     hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Provider-multiplexed Claude Code launchers (mimocode/deepcode/grokcode).
+    # The flake owns the claude-code derivation with a scoped unfree predicate,
+    # so consuming it does not require allowUnfree here.
+    shmulcode.url                    = "github:shmul95/shmulcode";
+    shmulcode.inputs.nixpkgs.follows = "nixpkgs";
+
     hermes-shmulsidian.url                    = "github:shmul95/hermes-shmulsidian";
     hermes-shmulsidian.inputs.nixpkgs.follows = "nixpkgs";
 
