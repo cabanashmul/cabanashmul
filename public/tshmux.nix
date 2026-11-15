@@ -27,6 +27,12 @@
 
       extraConfig = ''
         # Put extra tmux commands here.
+        # Vigil (Phase 1, infrastructure prerequisite): required for the OSC 99
+        # kitty-notification focus-pull fallback (Phase 6) to reach the outer
+        # kitty terminal from inside a tmux pane. Security tradeoff recorded in
+        # vigil's PROJECT.md Key Decisions table (single-user, local-socket-only
+        # exposure — see Pitfall 11 in vigil's .planning/research/PITFALLS.md).
+        set -g allow-passthrough on
       '';
     };
   };
